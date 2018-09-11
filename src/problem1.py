@@ -25,6 +25,9 @@ Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
 #    on it, in class or via Piazza.
 ########################################################################
 
+import testing_helper
+import time
+
 
 def main():
     """ Calls the   TEST   functions in this module. """
@@ -116,24 +119,31 @@ def run_test_problem1a():
     print('Testing the   problem1a   function:')
     print('--------------------------------------------------')
 
+    format_string = '    problem1a( {} )'
+    test_results = [0, 0]  # Number of tests passed, failed.
+
     # Test 1:
     expected = -1.601  # This is APPROXIMATELY the correct answer.
-    answer = problem1a(3, 5)
-    print()
-    print('Test 1 expected:', expected, '(approximately)')
-    print('       actual:  ', answer)
+    print_expected_result_of_test([3, 5], expected, test_results, format_string)
+    actual = problem1a(3, 5)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # Test 2:
     expected = 1.278  # This is APPROXIMATELY the correct answer.
-    answer = problem1a(30, 100)
-    print()
-    print('Test 2 expected:', expected, '(approximately)')
-    print('       actual:  ', answer)
+    print_expected_result_of_test([30, 100], expected, test_results,
+                                  format_string)
+    actual = problem1a(30, 100)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # ------------------------------------------------------------------
     # TO DO: 2 (continued).
     # Below this comment, add 2 more test cases of your own choosing.
-    # ------------------------------------------------------------------
+    # You do NOT need to use the above form.  Instead, use the usual:
+    #   expected = XXX
+    #   actual = problem1a(YYY, YYY)
+    #   print('Test 1 expected:', expected)
+    #   print('       actual:  ', actual)
+    #  ------------------------------------------------------------------
 
 
 def problem1a(m, n):
@@ -169,8 +179,12 @@ def run_test_problem1b():
     # ------------------------------------------------------------------
     # TODO: 5. Implement this TEST function.
     #   It TESTS the  problem1b  function defined below.
-    #   Include at least **   4   ** tests.
-    # ------------------------------------------------------------------
+    #   Include at least **   4   ** tests.  Use the usual form:
+    #
+    #   expected = XXX
+    #   actual = problem1b(YYY, YYY)
+    #   print('Test 1 expected:', expected)
+    #   print('       actual:  ', actual)
     # ------------------------------------------------------------------
     # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
     #    DIFFICULTY:      3
@@ -221,54 +235,51 @@ def run_test_problem1c():
     print('Testing the   problem1c   function:')
     print('--------------------------------------------------')
 
+    format_string = '    problem1c( {} )'
+    test_results = [0, 0]  # Number of tests passed, failed.
+
     # Test 1:
     expected = 3
-    answer = problem1c(10)
-    print()
-    print('Test 1 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([10], expected, test_results, format_string)
+    actual = problem1c(10)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # Test 2:
     expected = 6
-    answer = problem1c(11)
-    print()
-    print('Test 2 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([11], expected, test_results, format_string)
+    actual = problem1c(11)
+    print_actual_result_of_test(expected, actual, test_results)
+
 
     # Test 3:
     expected = 33
-    answer = problem1c(25)
-    print()
-    print('Test 3 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([25], expected, test_results, format_string)
+    actual = problem1c(25)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # Test 4:
     expected = 2
-    answer = problem1c(2)
-    print()
-    print('Test 4 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([2], expected, test_results, format_string)
+    actual = problem1c(2)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # Test 5:
     expected = 6
-    answer = problem1c(3)
-    print()
-    print('Test 5 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([3], expected, test_results, format_string)
+    actual = problem1c(3)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # Test 6:
     expected = 19416
-    answer = problem1c(10007)
-    print()
-    print('Test 6 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([10007], expected, test_results, format_string)
+    actual = problem1c(10007)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # Test 7:
     expected = 19416
-    answer = problem1c(10008)
-    print()
-    print('Test 7 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([10008], expected, test_results, format_string)
+    actual = problem1c(10008)
+    print_actual_result_of_test(expected, actual, test_results)
 
 
 def problem1c(n):
@@ -312,7 +323,49 @@ def problem1c(n):
     # ------------------------------------------------------------------
 
 
-# ----------------------------------------------------------------------
+###############################################################################
+# Our tests use the following to print error messages in red.
+# Do NOT change it.  You do NOT have to do anything with it.
+###############################################################################
+
+def print_expected_result_of_test(arguments, expected,
+                                  test_results, format_string):
+    testing_helper.print_expected_result_of_test(arguments, expected,
+                                                 test_results,
+                                                 format_string)
+
+
+def print_actual_result_of_test(expected, actual, test_results):
+    testing_helper.print_actual_result_of_test(expected, actual,
+                                               test_results)
+
+
+def print_summary_of_test_results(test_results):
+    testing_helper.print_summary_of_test_results(test_results)
+
+
+# To allow color-coding the output to the console:
+USE_COLORING = True  # Change to False to revert to OLD style coloring
+
+testing_helper.USE_COLORING = USE_COLORING
+if USE_COLORING:
+    # noinspection PyShadowingBuiltins
+    print = testing_helper.print_colored
+else:
+    # noinspection PyShadowingBuiltins
+    print = testing_helper.print_uncolored
+
+
+# -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
-# ----------------------------------------------------------------------
-main()
+# The   try .. except   prevents error messages on the console from being
+# intermingled with ordinary output to the console.
+# -----------------------------------------------------------------------------
+try:
+    main()
+except Exception:
+    print('ERROR - While running this test,', color='red')
+    print('your code raised the following exception:', color='red')
+    print()
+    time.sleep(1)
+    raise
