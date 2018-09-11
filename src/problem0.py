@@ -12,6 +12,8 @@ Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
 """  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
+import testing_helper
+import time
 
 
 def main():
@@ -94,13 +96,16 @@ def run_test_problem0a():
     print('Testing the   problem0a   function:')
     print('--------------------------------------------------')
 
+    format_string = '    problem0a( {} )'
+    test_results = [0, 0]  # Number of tests passed, failed.
+
     # Test 1:
     expected = False
-    answer = problem0a(83135)
-    print()
-    print('Test 1 expected:', expected)
-    print('       actual:  ', answer)
-    if answer == 'False':
+    print_expected_result_of_test([83135], expected, test_results,
+                                  format_string)
+    actual = problem0a(83135)  # Run the code to test
+    print_actual_result_of_test(expected, actual, test_results)
+    if actual == 'False':
         print('Your function returned the STRING "False",')
         print('which is WRONG.  It should have returned')
         print('the built-in constant False.')
@@ -108,11 +113,10 @@ def run_test_problem0a():
 
     # Test 2:
     expected = True
-    answer = problem0a(306)
-    print()
-    print('Test 2 expected:', expected)
-    print('       actual:  ', answer)
-    if answer == 'True':
+    print_expected_result_of_test([306], expected, test_results, format_string)
+    actual = problem0a(306)
+    print_actual_result_of_test(expected, actual, test_results)
+    if actual == 'True':
         print('Your function returned the STRING "True",')
         print('which is WRONG.  It should have returned')
         print('the built-in constant True.')
@@ -120,24 +124,23 @@ def run_test_problem0a():
 
     # Test 3:
     expected = False
-    answer = problem0a(246)
-    print()
-    print('Test 3 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([246], expected, test_results, format_string)
+    actual = problem0a(246)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # Test 4:
     expected = False
-    answer = problem0a(830931)
-    print()
-    print('Test 4 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([830931], expected, test_results,
+                                  format_string)
+    actual = problem0a(830931)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # Test 5:
     expected = True
-    answer = problem0a(730931)
-    print()
-    print('Test 5 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([730931], expected, test_results,
+                                  format_string)
+    actual = problem0a(730931)
+    print_actual_result_of_test(expected, actual, test_results)
 
 
 def problem0a(n):
@@ -182,33 +185,32 @@ def run_test_problem0b():
     print('Testing the   problem0b   function:')
     print('--------------------------------------------------')
 
+    format_string = '    problem0b( {} )'
+    test_results = [0, 0]  # Number of tests passed, failed.
+
     # Test 1:
     expected = 6
-    answer = problem0b(13)
-    print()
-    print('Test 1 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([13], expected, test_results, format_string)
+    actual = problem0b(13)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # Test 2:
     expected = 1
-    answer = problem0b(2)
-    print()
-    print('Test 2 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([2], expected, test_results, format_string)
+    actual = problem0b(2)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # Test 3:
     expected = 46
-    answer = problem0b(200)
-    print()
-    print('Test 3 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([200], expected, test_results, format_string)
+    actual = problem0b(200)
+    print_actual_result_of_test(expected, actual, test_results)
 
     # Test 4:
     expected = 168
-    answer = problem0b(997)
-    print()
-    print('Test 4 expected:', expected)
-    print('       actual:  ', answer)
+    print_expected_result_of_test([997], expected, test_results, format_string)
+    actual = problem0b(997)
+    print_actual_result_of_test(expected, actual, test_results)
 
 
 def problem0b(n):
@@ -306,7 +308,48 @@ def problem0c(circle, n, window):
     # ------------------------------------------------------------------
 
 
-# ----------------------------------------------------------------------
+###############################################################################
+# Our tests use the following to print error messages in red.
+# Do NOT change it.  You do NOT have to do anything with it.
+###############################################################################
+
+def print_expected_result_of_test(arguments, expected,
+                                  test_results, format_string):
+    testing_helper.print_expected_result_of_test(arguments, expected,
+                                                 test_results,
+                                                 format_string)
+
+
+def print_actual_result_of_test(expected, actual, test_results):
+    testing_helper.print_actual_result_of_test(expected, actual,
+                                               test_results)
+
+
+def print_summary_of_test_results(test_results):
+    testing_helper.print_summary_of_test_results(test_results)
+
+
+# To allow color-coding the output to the console:
+USE_COLORING = True  # Change to False to revert to OLD style coloring
+
+testing_helper.USE_COLORING = USE_COLORING
+if USE_COLORING:
+    # noinspection PyShadowingBuiltins
+    print = testing_helper.print_colored
+else:
+    # noinspection PyShadowingBuiltins
+    print = testing_helper.print_uncolored
+
+# -----------------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
-# ----------------------------------------------------------------------
-main()
+# The   try .. except   prevents error messages on the console from being
+# intermingled with ordinary output to the console.
+# -----------------------------------------------------------------------------
+try:
+    main()
+except Exception:
+    print('ERROR - While running this test,', color='red')
+    print('your code raised the following exception:', color='red')
+    print()
+    time.sleep(1)
+    raise
