@@ -2,8 +2,8 @@
 PRACTICE Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Yuchen zhu
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -37,7 +37,7 @@ def main():
 def run_test_problem3a():
     """ Tests the   problem3a   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   5   ** tests (we wrote four for you).
     # ------------------------------------------------------------------
@@ -136,8 +136,22 @@ def problem3a(window, point, n):
         :type point:  rg.Point
         :type n:      int
     """
+    sum = 0
+    for i in range(n):
+        a = rg.Point(point.x+20*i, point.y+10*i)
+        b = rg.Point(point.x+20*i,(point.y+50)+10*i)
+        line =rg.Line(a,b)
+        line.thickness = 1
+        line.attach_to(window)
+        line.thickness += i * 2
+        if(line.thickness >=13):
+            line.thickness = 13
+        sum = sum + line.thickness
+    window.render()
+    return sum
+
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -200,8 +214,27 @@ def problem3b(m, point1):
         :type m:      int
         :type point1: rg.Point
     """
+
+    title = "Test of problem 3b: m =[0] point =([1])".format(m,point1)
+    window1 = rg.RoseWindow(400, 650, title)
+    sum = 0
+    for j in range(m):
+        for i in range(3 + j*2):
+            a = rg.Point(point1.x + 20 * i, point1.y + 10 * i + j*60)
+            b = rg.Point(point1.x + 20 * i, (point1.y + 50) + 10 * i + j*60)
+            line = rg.Line(a, b)
+            line.thickness = 1
+            line.attach_to(window1)
+            line.thickness += i * 2
+            if (line.thickness >= 13):
+                line.thickness = 13
+            sum = sum + line.thickness
+    window1.render()
+    window1.close_on_mouse_click()
+    return sum
+
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################

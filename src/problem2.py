@@ -2,8 +2,8 @@
 PRACTICE Exam 1, problem 2.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and Yuchen Zhu
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -101,8 +101,27 @@ def problem2a(circle, rectangle, window):
       :type rectangle: rg.Rectangle
       :type window:    rg.RoseWindow
     """
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    if(rectangle.corner_2.y > rectangle.corner_1.y):
+        temp = rectangle.corner_1.y
+        rectangle.corner_1.y = rectangle.corner_2.y
+        rectangle.corner_2.y = temp
+    line = rg.Line(rectangle.corner_2, rectangle.corner_1)
+    line.arrow = "last"
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    circle.fill_color = rectangle.outline_color
+    circle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    window.render()
+
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -172,8 +191,31 @@ def problem2b(rect, n, delta, win):
       :type delta:  int
       :type win:    rg.RoseWindow
     """
+    rect.attach_to(win)
+
+    if (rect.corner_2.y < rect.corner_1.y):
+        temp = rect.corner_1.y
+        rect.corner_1.y = rect.corner_2.y
+        rect.corner_2.y = temp
+
+    if (rect.corner_2.x < rect.corner_1.x):
+        temp = rect.corner_1.x
+        rect.corner_1.x = rect.corner_2.x
+        rect.corner_2.x = temp
+
+    for i in range(n):
+
+        a = rg.Point(rect.corner_1.x-delta*(i), rect.corner_1.y-delta*(i))
+        b = rg.Point(rect.corner_2.x+delta*(i), rect.corner_2.y+delta*(i))
+
+        rectangle = rg.Rectangle(a, b)
+        rectangle.attach_to(win)
+
+    win.render()
+
+
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
