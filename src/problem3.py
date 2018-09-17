@@ -95,6 +95,14 @@ def run_test_problem3a():
     print('Test 4 expected:', expected)
     print('       actual:  ', answer)
 
+    # Test 5 (it is on window 3):
+    point = rg.Point(360, 30)
+    expected = 25
+    answer = problem3a(window3, point, 5)
+    print()
+    print('Test #5 expected:', expected)
+    print('       actual:  ', answer)
+
     window3.close_on_mouse_click()
 
     # ------------------------------------------------------------------
